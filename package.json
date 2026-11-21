@@ -1,0 +1,13 @@
+{
+  "name": "task-api-cicd-demo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Small API used by the Docker CI/CD and Kubernetes chapter.",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
