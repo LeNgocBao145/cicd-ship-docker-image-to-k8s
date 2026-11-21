@@ -4,7 +4,9 @@ COPY package.json package-lock.json ./
 RUN npm ci --omit=dev
 
 FROM node:lts-alpine
-RUN apk upgrade --no-cache
+RUN apk upgrade --no-cache \
+    && rm -rf /usr/local/lib/node_modules/npm \
+    && rm -f /usr/local/bin/npm /usr/local/bin/npx
 WORKDIR /app
 COPY --from=build /app/node_modules ./node_modules
 COPY src ./src
