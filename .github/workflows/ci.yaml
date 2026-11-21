@@ -46,14 +46,14 @@ jobs:
           context: .
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: ghcr.io/lengocbao145/task-api:${{ github.sha }}
+          tags: ghcr.io/lengocbao145/cicd-ship-docker-image-to-k8s/task-api:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
       - name: Scan the pushed image
         uses: aquasecurity/trivy-action@v0.36.0
         with:
-          image-ref: ghcr.io/lengocbao145/task-api@${{ steps.build.outputs.digest }}
+          image-ref: ghcr.io/lengocbao145/cicd-ship-docker-image-to-k8s/task-api@${{ steps.build.outputs.digest }}
           format: table
           exit-code: "1"
           ignore-unfixed: true
