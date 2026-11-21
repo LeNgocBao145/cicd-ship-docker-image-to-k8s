@@ -1,6 +1,8 @@
 FROM node:24-alpine AS build
-COPY package*.json ./
-RUN npm ci --omit=dev
+WORKDIR /app
+COPY package.json package-lock.json* ./
+RUN --mount=type=cache,target=/root/.npm \
+    npm ci --omit=dev
 
 FROM node:24-alpine
 RUN apk upgrade --no-cache
